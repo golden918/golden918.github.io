@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Smart Thermostat | Caleb Baker ePortfolio</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <h1>Caleb Baker</h1>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="code-review.html">Code Review</a>
+      <a href="enhancement-one.html" class="active">Software Design</a>
+      <a href="enhancement-two.html">Algorithms</a>
+      <a href="enhancement-three.html">Databases</a>
+    </nav>
+  </header>
+
+  <main>
+    <div class="hero">
+      <span class="tag">Enhancement One: Software Design &amp; Engineering</span>
+      <h2>Smart Thermostat</h2>
+      <p>A Raspberry Pi thermostat state machine, refactored so its logic is separated from the hardware and fully testable without it.</p>
+      <p><em>CS 350: Emerging Systems Architectures and Technologies</em></p>
+      <a class="btn" href="https://github.com/golden918/golden918.github.io/tree/main/artifacts/thermostat/enhanced">Enhanced Code</a>
+      <a class="btn outline" href="https://github.com/golden918/golden918.github.io/tree/main/artifacts/thermostat/original">Original Code</a>
+      <a class="btn outline" href="narratives/Caleb%20Baker%20Milestone%20Two.docx">Narrative (.docx)</a>
+    </div>
+
+    <h2>What Changed</h2>
+    <table>
+      <thead>
+        <tr><th>Original</th><th>Enhanced</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>State machine called Raspberry Pi libraries directly</td><td>Uses an abstract <code>HardwareInterface</code> injected through the constructor</td></tr>
+        <tr><td>Could only run on physical hardware</td><td><code>FakeHardware</code> test double runs everything on any computer</td></tr>
+        <tr><td>No automated tests</td><td>15 tests covering transitions, LEDs, setpoint limits, sensor failures, and thread shutdown</td></tr>
+        <tr><td>Hardware errors raised uncaught exceptions</td><td>Defensive error handling keeps the thermostat running</td></tr>
+        <tr><td>Magic numbers and an unbounded setpoint</td><td>Named constants with min/max setpoint limits</td></tr>
+      </tbody>
+    </table>
+
+    <section>
+      <h2>Narrative</h2>
+
+      <h3>Artifact Description</h3>
+
+      <p>The artifact I selected is a Python-based smart thermostat program called Thermostat.py that I originally created for CS 350: Emerging Systems Architectures and Technologies. The program runs on a Raspberry Pi and uses a three-state state machine with off, heat, and cool states. It reads temperature data from an AHT20 sensor through I2C, controls red and blue PWM LEDs, displays information on a 16x2 LCD, accepts input from three GPIO buttons, and sends status information through a UART connection.</p>
+
+      <h3>Justification for Inclusion</h3>
+
+      <p>I chose this artifact because it is a good example of a real control system using a state machine to control hardware. It also relates to my interest in game development because games use the same ideas for responding to input, updating state, and producing output every frame.</p>
+
+      <p>The main improvements I made were separating the thermostat logic from the Raspberry Pi hardware and adding automated testing. I created a HardwareInterface abstract base class that defines the hardware operations the thermostat needs. I then moved the Raspberry Pi-specific code into a RaspberryPiHardware class and changed TemperatureMachine to receive the hardware interface through its constructor. This means the state machine no longer has to directly access the physical hardware.</p>
+
+      <p>I also created a FakeHardware test double and a 15-test automated test suite. The tests cover state transitions, LED behavior, setpoint limits, sensor failures, and the display thread starting and stopping. The tests can run without a Raspberry Pi connected.</p>
+
+      <p>Other improvements included adding error handling for hardware failures, replacing magic numbers with named constants, adding minimum and maximum setpoint values, and creating a stop() method for cleanly shutting down the display thread.</p>
+
+      <p>The main software engineering concepts I used were abstraction, dependency inversion, dependency injection, defensive error handling, and automated testing.</p>
+
+      <h3>Course Outcomes: Met and Updated</h3>
+
+      <p>My original Module One plan focused on Course Outcomes 1, 2, and 4. However, when I looked back at the original CS 350 code, I discovered that my plan was based on an incorrect assumption. I thought the thermostat used an if/elif structure to manage its states, but it was already using the State pattern through the python-statemachine library.</p>
+
+      <p>Because the State pattern was already there, I focused my enhancement on the actual weakness I found: the state machine was tightly coupled to the Raspberry Pi hardware. This made the program difficult to test without the physical hardware and meant hardware failures could cause uncaught exceptions.</p>
+
+      <ul>
+        <li><strong>Outcome 1:</strong> The new hardware interface and test suite make the project easier for another developer to understand, modify, and test, which supports collaboration on a shared codebase.</li>
+        <li><strong>Outcome 2:</strong> I documented the changes and design decisions through code comments and this written explanation.</li>
+        <li><strong>Outcome 4:</strong> I used established techniques such as an abstract base class, dependency injection, and automated testing with a custom test double. These changes made the project more testable and maintainable.</li>
+      </ul>
+
+      <p>Outcomes 3 and 5 were not the focus of this enhancement. The added error handling for sensor failures moves toward Outcome 5, but I address algorithmic design and security more fully in Enhancements Two and Three.</p>
+
+      <h3>Reflection</h3>
+
+      <p>The biggest lesson I learned was that I should always check the actual code before making assumptions about how a project works. My original enhancement plan was based on an incorrect assumption about the state machine. Finding that out forced me to look at the real problem instead of applying a solution that was not needed.</p>
+
+      <p>Creating the FakeHardware class was one of the most useful parts of the project. Instead of making a fake that simply returned successful results, I made it behave more like the real hardware. It can simulate LED behavior and sensor failures, which makes the tests more meaningful.</p>
+
+      <p>I also had to work around a deprecation warning from the current version of python-statemachine and make sure the display thread stopped when stop() was called. Testing the thread directly gave me more confidence that the shutdown process worked correctly.</p>
+
+      <p>This project showed me that good software design is not only about the design pattern used in the main logic. The original state machine was already fairly well designed, but its connection to the hardware made it difficult to test. Separating those two parts made the program easier to test, understand, and maintain.</p>
+    </section>
+  </main>
+
+  <footer>
+    <p>Caleb Baker · B.S. Computer Science, Southern New Hampshire University</p>
+    <p><a href="https://github.com/golden918">GitHub</a></p>
+  </footer>
+</body>
+</html>

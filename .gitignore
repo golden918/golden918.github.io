@@ -1,0 +1,29 @@
+# Node / Travlr
+node_modules/
+npm-debug.log*
+coverage/
+dist/
+.angular/
+
+# Secrets
+.env
+.env.*
+!.env.example
+
+# Python / thermostat + TreasureHunt
+__pycache__/
+*.pyc
+.venv/
+venv/
+.ipynb_checkpoints/
+.pytest_cache/
+
+# Model weights and large outputs
+*.h5
+*.keras
+
+# OS / editor
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/

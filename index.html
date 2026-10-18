@@ -1,7 +1,95 @@
-   <html>
-   <head><title>Caleb Baker — CS 499 ePortfolio</title></head>
-   <body>
-     <h1>Caleb Baker</h1>
-     <p>Computer Science ePortfolio — coming soon.</p>
-   </body>
-   </html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Home | Caleb Baker ePortfolio</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <h1>Caleb Baker</h1>
+    <nav>
+      <a href="index.html" class="active">Home</a>
+      <a href="code-review.html">Code Review</a>
+      <a href="enhancement-one.html">Software Design</a>
+      <a href="enhancement-two.html">Algorithms</a>
+      <a href="enhancement-three.html">Databases</a>
+    </nav>
+  </header>
+
+  <main>
+    <div class="hero">
+      <h2>Computer Science ePortfolio</h2>
+      <p>Software developer focused on game development. I build systems that are tested, maintainable, and secure, from embedded hardware to machine learning to full stack web applications.</p>
+      <a class="btn" href="#self-assessment">Read Self-Assessment</a>
+      <a class="btn outline" href="code-review.html">Code Review</a>
+    </div>
+
+    <h2>Enhanced Artifacts</h2>
+    <div class="cards">
+      <a class="card" href="enhancement-one.html">
+        <span class="tag">Enhancement One</span>
+        <h3>Software Design &amp; Engineering</h3>
+        <p>Smart Thermostat · CS 350</p>
+      </a>
+      <a class="card" href="enhancement-two.html">
+        <span class="tag">Enhancement Two</span>
+        <h3>Algorithms &amp; Data Structures</h3>
+        <p>TreasureHuntGame Q-Learning Agent · CS 370</p>
+      </a>
+      <a class="card" href="enhancement-three.html">
+        <span class="tag">Enhancement Three</span>
+        <h3>Databases</h3>
+        <p>Travlr Getaways · CS 465</p>
+      </a>
+    </div>
+
+    <section id="self-assessment">
+      <h2>Professional Self-Assessment</h2>
+      <p><a href="narratives/Caleb_Baker_CS499_Professional_Self_Assessment.docx">Download as Word document</a></p>
+
+      <h3>Introduction</h3>
+
+      <p>text </p>
+
+      <h3>Communicating with Stakeholders</h3>
+
+      <p>text </p>
+
+      <h3>Data Structures and Algorithms</h3>
+
+      <p>text </p>
+
+      <h3>Software Engineering and Databases</h3>
+
+      <p>text </p>
+
+      <h3>Security</h3>
+
+      <p>text </p>
+
+      <h3>Professional Goals and Values</h3>
+
+      <p>text </p>
+
+      <h3>Portfolio Overview</h3>
+
+      <p>text </p>
+
+      <ul>
+        <li><strong>Enhancement One: Software Design and Engineering.</strong> The CS 350 smart thermostat was refactored to separate its state machine from the Raspberry Pi hardware using an abstract interface, dependency injection, defensive error handling, and a 15-test suite that runs without hardware.</li>
+        <li><strong>Enhancement Two: Algorithms and Data Structures.</strong> The CS 370 TreasureHuntGame Q-learning agent received a SumTree-based Prioritized Experience Replay memory with O(1) insertion and O(log n) sampling, verified by 12 unit tests.</li>
+        <li><strong>Enhancement Three: Databases.</strong> The CS 465 Travlr Getaways MEAN stack application received a redesigned MongoDB schema, indexing, filtering and pagination, an aggregation pipeline, a data migration, hardened authentication, and 54 integration tests.</li>
+      </ul>
+
+      <p>Each artifact page includes the original code, the enhanced code, and a narrative explaining what I changed and what I learned. The informal code review video walks through all three artifacts before enhancement. Together, they show a developer who can design clean systems, choose the right algorithms, manage data responsibly, and build security in from the start.</p>
+    </section>
+  </main>
+
+  <footer>
+    <p>Caleb Baker · B.S. Computer Science, Southern New Hampshire University</p>
+    <p><a href="https://github.com/golden918">GitHub</a></p>
+  </footer>
+</body>
+</html>

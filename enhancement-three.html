@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Travlr Getaways | Caleb Baker ePortfolio</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <h1>Caleb Baker</h1>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="code-review.html">Code Review</a>
+      <a href="enhancement-one.html">Software Design</a>
+      <a href="enhancement-two.html">Algorithms</a>
+      <a href="enhancement-three.html" class="active">Databases</a>
+    </nav>
+  </header>
+
+  <main>
+    <div class="hero">
+      <span class="tag">Enhancement Three: Databases</span>
+      <h2>Travlr Getaways</h2>
+      <p>A MEAN stack travel booking app with a redesigned MongoDB layer, reporting, data migration, and hardened authentication.</p>
+      <p><em>CS 465: Full Stack Development</em></p>
+      <a class="btn" href="https://github.com/golden918/golden918.github.io/tree/main/artifacts/travlr/enhanced">Enhanced Code</a>
+      <a class="btn outline" href="https://github.com/golden918/golden918.github.io/tree/main/artifacts/travlr/original">Original Code</a>
+      <a class="btn outline" href="narratives/Caleb%20Baker%20CS%20499%20Milestone%20Four%20Enhancement%20Three.docx">Narrative (.docx)</a>
+    </div>
+
+    <h2>What Changed</h2>
+    <table>
+      <thead>
+        <tr><th>Original</th><th>Enhanced</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Trip code not unique; price stored as a String</td><td>Unique, validated codes; numeric prices; query-based indexes</td></tr>
+        <tr><td><code>GET /trips</code> returned every record</td><td>Filtering, sorting, pagination, and lean queries</td></tr>
+        <tr><td>No reporting</td><td><code>GET /trips/stats</code> aggregation pipeline</td></tr>
+        <tr><td>No path for existing data</td><td>Migration script and automatic password-hash upgrades at login</td></tr>
+        <tr><td>Broken JWT flow; registration could crash the API</td><td>Verified token flow, pinned algorithm, working registration</td></tr>
+        <tr><td>NoSQL injection and mass assignment possible</td><td><code>sanitizeFilter</code>, field whitelist, hidden password hashes</td></tr>
+        <tr><td>No tests</td><td>54 Jest/Supertest integration tests on in-memory MongoDB</td></tr>
+      </tbody>
+    </table>
+
+    <section>
+      <h2>Narrative</h2>
+
+      <h3>Artifact Description</h3>
+
+      <p>The artifact I chose is Travlr Getaways, a MEAN stack travel booking application I built for CS 465: Full Stack Development. The project includes an Express server for the customer-facing website, a REST API connected to MongoDB through Mongoose, and an Angular application for administrators. Administrators log in using a JSON Web Token (JWT) and add or edit trips through the admin application. For this enhancement, I focused on the database layer, including the Trip and User schemas, the trip controllers, and the authentication that protects database changes.</p>
+
+      <h3>Justification for Inclusion</h3>
+
+      <p>I chose this artifact for the Databases category because the database is the foundation of the entire application. The customer website and admin application both depend on data being stored and retrieved correctly. If the database design or queries are inefficient, or if the security checks are not working properly, the rest of the application has problems too. My original code review found several issues, including a trip code without a unique constraint, queries that returned every trip without limits, database errors that could crash requests, and problems with the authentication system. I used those findings to guide my enhancements.</p>
+
+      <ul>
+        <li><strong>Schema design.</strong> I made trip codes unique, converted them to uppercase, and added format validation. I changed the price field from a String to a Number so prices could be sorted, filtered, and used in calculations correctly. I added validation at the schema level and created indexes based on the queries the application uses most often.</li>
+        <li><strong>Query design.</strong> I updated GET /trips to support filtering by resort, name, date range, and price range. It also supports sorting, pagination, and selecting only the fields needed for a response, and it uses lean queries to reduce unnecessary processing. Pagination information is returned through response headers, which allowed the existing Angular and server-rendered applications to keep working without changes to how they read the response body.</li>
+        <li><strong>Aggregation.</strong> I added a GET /trips/stats endpoint that uses a MongoDB aggregation pipeline to calculate the number of trips and the average, minimum, and maximum prices for each resort. It also provides an overall summary and supports the same filters as the trip listing endpoint.</li>
+        <li><strong>Data migration.</strong> I created a migration script that converts existing prices from Strings to Numbers, normalizes trip codes, and checks for duplicate codes that would prevent the unique index from being created before synchronizing the indexes. I also updated the password system so older password hashes using 1,000 iterations are upgraded to 210,000 iterations when users log in, which applies the security improvement without requiring users to reset their passwords.</li>
+        <li><strong>Security.</strong> I fixed the JWT verification flow so requests only continue after a token has been verified, and I restricted the signing algorithm. Registration now returns a valid token. Password hashing is asynchronous, password comparisons use a constant-time comparison, and password hashes are excluded from query results. I also enabled Mongoose's sanitizeFilter protection against NoSQL injection and added a field whitelist to prevent users from changing fields they should not be able to modify.</li>
+        <li><strong>Reliability and testing.</strong> I added error handling to the controllers so database and validation problems return appropriate status codes instead of causing unexpected failures: 400 for validation errors, 409 for duplicate records, and 404 when a record cannot be found. Database connection settings now come from environment variables. I also created a suite of 54 Jest and Supertest tests that run against a temporary in-memory MongoDB database.</li>
+      </ul>
+
+      <h3>Course Outcomes: Met and Updated</h3>
+
+      <p>My original plan focused on Outcome 4, which covers database techniques such as indexing and aggregation, and Outcome 5, which focuses on security. I met both outcomes through these enhancements.</p>
+
+      <ul>
+        <li><strong>Outcome 4:</strong> I improved the database by adding indexes based on actual query patterns, creating an aggregation pipeline for reporting, writing a migration script, moving configuration into environment variables, and adding automated integration tests.</li>
+        <li><strong>Outcome 5:</strong> I improved authentication and password security by fixing the token verification process, strengthening password hashing, and preventing injection attacks and unauthorized field changes. Password hashes are also excluded from API responses.</li>
+      </ul>
+
+      <p>The project also supports Outcome 3 because I had to weigh the trade-offs involved in database design. Indexes make reads faster, but they add work when records are written or updated, so I only added indexes that serve the queries the application actually performs. I kept offset pagination because it is straightforward and works for the current size of the trip catalog, although it can become slower when accessing very deep pages.</p>
+
+      <p>I am keeping my original outcome coverage plan, but this artifact is now my strongest example of improving application security.</p>
+
+      <p>During testing, I also discovered that one of my original findings was not quite accurate. When I tested the original authentication code against the running server, a forged token returned a 401 response. However, this happened because the verification callback ran synchronously and a second response attempt caused an error before the request could continue. The invalid token was blocked because the code crashed, not because the authentication flow was working correctly. This was still a problem that needed to be fixed, but it was different from the bypass I originally described.</p>
+
+      <p>The registration problem was more serious than I expected. The application saved the new user, but an undefined token reference then caused an unhandled rejection that terminated the Node process. This meant a single registration request could take the entire API offline. Finding this helped me understand why it is important to test how an application behaves when something goes wrong instead of only checking whether the normal workflow works.</p>
+
+      <h3>Reflection</h3>
+
+      <p>The biggest thing I learned from this enhancement is that a database schema is a contract, and changing that contract means dealing with the data that already exists. Changing the price field from a String to a Number was simple in the schema, but the existing database still contained prices stored as strings. The same problem applied to users whose password hashes were created with the older settings. Writing the migration script and upgrading passwords at login helped me understand that database changes involve more than just updating the code. I also learned how much data types matter: storing prices as Strings limited what the application could do with them, while using Numbers made it possible to sort, filter, and calculate prices correctly.</p>
+
+      <p>Another lesson was that my initial code review was a starting point, not a final answer. I needed to reproduce the problems before deciding exactly how to fix them. Testing the original application changed how I described two of my findings and helped me discover other issues I had missed, including a seed script that only worked with a specific Windows file path, an Angular edit form that always loaded empty, and node_modules being committed to Git. Even when a code review identifies the major problems, other issues only become obvious when the application is run and its behavior is tested.</p>
+
+      <p>Two technical challenges stood out. The first was enabling sanitizeFilter without breaking my own queries, since it also affected the range and regular expression filters I had intentionally built into the application. I had to mark the operators generated by my own code as trusted while still protecting against untrusted input. This helped me better understand the difference between values that come from a user and query logic that the application creates itself.</p>
+
+      <p>The second challenge involved how I exported my database connection helper. I assigned the helper to module.exports in a file where module.exports was already the Mongoose object. This replaced mongoose.connect with my own helper, which then called itself repeatedly until the application hit a stack overflow. My test suite caught this problem on its first run, which was a good reminder that small changes can have unexpected effects when working with modules and shared objects.</p>
+
+      <p>This enhancement improved my understanding of database design, security, testing, and maintaining existing applications. The tests now verify that forged, expired, incorrectly signed, and "alg: none" tokens are rejected before reaching the controller, and they check the database afterward to confirm that no records were written. Instead of assuming the security fixes work, I now have tests that provide evidence that they do. That is something I want to carry into future development work, because building an application is not just about making features work. It is also about making sure the application handles errors, protects its data, and keeps working as expected.</p>
+    </section>
+  </main>
+
+  <footer>
+    <p>Caleb Baker · B.S. Computer Science, Southern New Hampshire University</p>
+    <p><a href="https://github.com/golden918">GitHub</a></p>
+  </footer>
+</body>
+</html>

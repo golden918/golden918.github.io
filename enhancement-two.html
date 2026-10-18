@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TreasureHuntGame Q-Learning Agent | Caleb Baker ePortfolio</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <h1>Caleb Baker</h1>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="code-review.html">Code Review</a>
+      <a href="enhancement-one.html">Software Design</a>
+      <a href="enhancement-two.html" class="active">Algorithms</a>
+      <a href="enhancement-three.html">Databases</a>
+    </nav>
+  </header>
+
+  <main>
+    <div class="hero">
+      <span class="tag">Enhancement Two: Algorithms &amp; Data Structures</span>
+      <h2>TreasureHuntGame Q-Learning Agent</h2>
+      <p>A deep Q-learning pirate agent whose replay memory was rebuilt as a SumTree-based Prioritized Experience Replay.</p>
+      <p><em>CS 370: Current and Emerging Trends in Computer Science</em></p>
+      <a class="btn" href="https://github.com/golden918/golden918.github.io/tree/main/artifacts/treasure-hunt/enhanced">Enhanced Code</a>
+      <a class="btn outline" href="https://github.com/golden918/golden918.github.io/tree/main/artifacts/treasure-hunt/original">Original Code</a>
+      <a class="btn outline" href="narratives/Caleb%20Baker%20Milestone%20Three%20%281%29.docx">Narrative (.docx)</a>
+    </div>
+
+    <h2>What Changed</h2>
+    <table>
+      <thead>
+        <tr><th>Original</th><th>Enhanced</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Replay memory stored in a plain Python list</td><td>SumTree binary tree storing experience priorities</td></tr>
+        <tr><td>Removing the oldest experience was an O(n) shift</td><td>O(1) insertion into a fixed-size buffer</td></tr>
+        <tr><td>Uniform random sampling</td><td>Prioritized sampling by TD-error in O(log n)</td></tr>
+        <tr><td>No tests for the memory module</td><td>12 unit tests that run without TensorFlow</td></tr>
+      </tbody>
+    </table>
+
+    <section>
+      <h2>Narrative</h2>
+
+      <h3>Artifact Description</h3>
+
+      <p>The artifact is TreasureHuntGame, a Python/Jupyter notebook created for CS 370: Current and Emerging Trends in Computer Science. It uses deep Q-learning to train a pirate agent to navigate a maze and find treasure. A Keras neural network predicts the value of each possible move, while the qtrain() function trains the agent through thousands of simulated games. The system uses experience replay and a target network to make training more stable. The maze and replay memory are handled through separate support modules, TreasureMaze.py and GameExperience.py.</p>
+
+      <h3>Justification for Inclusion</h3>
+
+      <p>I selected this artifact for the Algorithms and Data Structures category because it involves a clear algorithmic decision about how training experiences are stored and sampled. It also connects to my goal of becoming a game developer because reinforcement learning and game AI both depend on efficient decision-making and data structures.</p>
+
+      <p>My enhancement focused on the replay memory in GameExperience.py. My original Module One plan included four possible enhancements, but two were already present in the actual course code. The main problem I found was that the replay memory used a basic Python list. Removing the oldest entry required an O(n) shift, and experiences were sampled uniformly at random without considering which ones were most useful.</p>
+
+      <p>I replaced the list with Prioritized Experience Replay (PER) using a SumTree. The SumTree stores priorities in a binary tree, allowing new experiences to be inserted in O(1) time and sampled in O(log n) time. Experiences with larger TD-errors are given higher priority because they represent situations the model is still having difficulty learning. I kept the original remember(), predict(), and get_data() interfaces, so qtrain() did not need to be changed. I also created 12 automated tests to verify the SumTree and replay memory without requiring TensorFlow.</p>
+
+      <h3>Course Outcomes: Met and Updated</h3>
+
+      <p>My Module One plan targeted Outcomes 3 and 4 with four enhancements: bounded replay memory, prioritized sampling, a hash set for visited cells, and a decaying exploration rate.</p>
+
+      <p>After examining the code of the files I had not planned to change, I found that the maze already used a Python set() to track visited cells, and the training loop already decreased epsilon toward a minimum value. Because those features were already implemented, they did not need to be enhanced. The other two parts of my plan were still relevant, so I combined them into the full SumTree-based prioritized replay system.</p>
+
+      <ul>
+        <li><strong>Outcome 3:</strong> The SumTree improves the algorithm's time complexity by making insertion O(1) and sampling O(log n), while prioritizing experiences that provide more useful training information. Keeping the original interfaces was a deliberate trade-off that limited the change to one module.</li>
+        <li><strong>Outcome 4:</strong> I implemented Prioritized Experience Replay based on the approach described by Schaul et al. (2015) and verified the implementation with automated tests.</li>
+      </ul>
+
+      <p>Outcome 5 was not targeted by this enhancement because the artifact does not handle user input or sensitive data; security is addressed in Enhancement Three.</p>
+
+      <h3>Reflection</h3>
+
+      <p>The biggest lesson from this enhancement was the same one I learned during my first enhancement: verify the actual code before building a plan around assumptions. My Module One plan was partly based on features I expected to find, but two of them were already implemented. A plan is useful, but it cannot replace examining the code.</p>
+
+      <p>Another challenge was that TreasureMaze.py and GameExperience.py were imported modules and were not included in the notebook's HTML export. I had to rebuild them using the public version of the assignment files, the course specifications, and the instructor's starter notebook. This helped me confirm how the original system was designed instead of relying on assumptions.</p>
+
+      <p>The most technical challenge was getting the SumTree indexing correct. Parent nodes must always contain the sum of their children, and even a small indexing error can cause incorrect sampling. My unit tests using manually calculated priority ranges caught an off-by-one error in my first version before it affected the training system. This reinforced how important automated testing is when working with data structures.</p>
+
+      <h3>References</h3>
+
+      <p>Schaul, T., Quan, J., Antonoglou, I., &amp; Silver, D. (2015). <em>Prioritized experience replay</em> (arXiv:1511.05952). arXiv. <a href="https://doi.org/10.48550/arXiv.1511.05952">https://doi.org/10.48550/arXiv.1511.05952</a></p>
+    </section>
+  </main>
+
+  <footer>
+    <p>Caleb Baker · B.S. Computer Science, Southern New Hampshire University</p>
+    <p><a href="https://github.com/golden918">GitHub</a></p>
+  </footer>
+</body>
+</html>

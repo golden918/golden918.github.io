@@ -1,0 +1,200 @@
+/* ===== Colors & fonts (change these to restyle the whole site) ===== */
+:root {
+  --bg: #f7f6f2;
+  --surface: #ffffff;
+  --text: #1d2125;
+  --muted: #5d656e;
+  --line: #e2dfd6;
+  --accent: #1f6f5c;
+  --accent-soft: #e3f0ec;
+  --sans: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --serif: Georgia, "Times New Roman", serif;
+  --radius: 12px;
+}
+
+/* Dark mode follows the visitor's system setting */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #14171a;
+    --surface: #1c2024;
+    --text: #e8e6e1;
+    --muted: #9aa2ab;
+    --line: #2d3238;
+    --accent: #5cc3a6;
+    --accent-soft: #1d3029;
+  }
+}
+
+/* ===== Base ===== */
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font: 17px/1.65 var(--sans);
+}
+
+a { color: var(--accent); }
+a:hover { text-decoration: none; }
+
+h1, h2, h3 { font-family: var(--serif); line-height: 1.2; }
+h2 { font-size: 28px; margin: 40px 0 12px; }
+h3 { font-size: 21px; margin: 28px 0 8px; }
+p, li { max-width: 72ch; }
+
+/* ===== Header & nav ===== */
+header {
+  background: var(--surface);
+  border-bottom: 1px solid var(--line);
+  padding: 16px max(20px, calc((100% - 900px) / 2));
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 12px;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+header h1 { font-size: 22px; margin: 0; }
+
+nav { display: flex; flex-wrap: wrap; gap: 4px; }
+
+nav a {
+  color: var(--muted);
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 15px;
+  padding: 8px 12px;
+  border-radius: 8px;
+}
+
+nav a:hover { background: var(--bg); color: var(--text); }
+
+/* Add class="active" to the current page's link */
+nav a.active { background: var(--accent-soft); color: var(--accent); }
+
+/* ===== Main content ===== */
+main {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+/* A white box for long text, like the self-assessment or a narrative */
+section {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 8px 32px 28px;
+  margin: 32px 0;
+}
+
+/* ===== Hero (big intro at the top of the home page) ===== */
+.hero { padding: 48px 0 16px; }
+.hero h2 { font-size: clamp(36px, 6vw, 52px); margin: 0 0 12px; }
+.hero p { font-size: 20px; color: var(--muted); }
+
+/* ===== Buttons ===== */
+.btn {
+  display: inline-block;
+  background: var(--accent);
+  color: var(--surface);
+  padding: 12px 20px;
+  border-radius: 10px;
+  font-weight: 600;
+  text-decoration: none;
+  border: 1px solid var(--accent);
+  margin: 8px 8px 0 0;
+}
+
+.btn.outline { background: transparent; color: var(--accent); }
+.btn:hover { filter: brightness(1.1); }
+
+/* ===== Cards (for the three enhancements) ===== */
+.cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 20px;
+  margin: 24px 0;
+}
+
+.card {
+  display: block;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 24px;
+  color: var(--text);
+  text-decoration: none;
+  transition: transform 0.15s, border-color 0.15s;
+}
+
+.card:hover { border-color: var(--accent); transform: translateY(-3px); }
+.card h3 { margin: 8px 0 4px; }
+.card p { margin: 0; color: var(--muted); }
+
+.tag {
+  display: inline-block;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--accent);
+  background: var(--accent-soft);
+  padding: 3px 10px;
+  border-radius: 999px;
+}
+
+/* ===== Tables (e.g., before/after changes) ===== */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  overflow: hidden;
+  font-size: 15px;
+}
+
+th, td { text-align: left; padding: 12px 16px; border-bottom: 1px solid var(--line); vertical-align: top; }
+th { font-size: 13px; text-transform: uppercase; letter-spacing: 0.05em; color: var(--muted); }
+
+/* ===== Code ===== */
+code {
+  font-family: ui-monospace, Consolas, monospace;
+  font-size: 0.9em;
+  background: var(--accent-soft);
+  padding: 2px 6px;
+  border-radius: 4px;
+}
+
+/* ===== Video (16:9, responsive) ===== */
+.video {
+  position: relative;
+  aspect-ratio: 16 / 9;
+  border-radius: var(--radius);
+  overflow: hidden;
+  background: #000;
+  margin: 24px 0;
+}
+
+.video iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
+
+/* ===== Footer ===== */
+footer {
+  border-top: 1px solid var(--line);
+  margin-top: 48px;
+  padding: 24px 20px;
+  text-align: center;
+  color: var(--muted);
+  font-size: 14px;
+}
+
+/* ===== Phones ===== */
+@media (max-width: 640px) {
+  body { font-size: 16px; }
+  section { padding: 4px 18px 20px; }
+  nav a { padding: 6px 8px; font-size: 14px; }
+}
