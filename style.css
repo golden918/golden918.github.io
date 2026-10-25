@@ -1,4 +1,3 @@
-/* ===== Colors & fonts (change these to restyle the whole site) ===== */
 :root {
   --bg: #f7f6f2;
   --surface: #ffffff;
@@ -12,7 +11,6 @@
   --radius: 12px;
 }
 
-/* Dark mode follows the visitor's system setting */
 @media (prefers-color-scheme: dark) {
   :root {
     --bg: #14171a;
@@ -25,7 +23,6 @@
   }
 }
 
-/* ===== Base ===== */
 * { box-sizing: border-box; }
 html { scroll-behavior: smooth; }
 
@@ -74,7 +71,6 @@ nav a {
 
 nav a:hover { background: var(--bg); color: var(--text); }
 
-/* Add class="active" to the current page's link */
 nav a.active { background: var(--accent-soft); color: var(--accent); }
 
 /* ===== Main content ===== */
@@ -93,7 +89,7 @@ section {
   margin: 32px 0;
 }
 
-/* ===== Hero (big intro at the top of the home page) ===== */
+/* ===== Hero ===== */
 .hero { padding: 48px 0 16px; }
 .hero h2 { font-size: clamp(36px, 6vw, 52px); margin: 0 0 12px; }
 .hero p { font-size: 20px; color: var(--muted); }
@@ -114,7 +110,7 @@ section {
 .btn.outline { background: transparent; color: var(--accent); }
 .btn:hover { filter: brightness(1.1); }
 
-/* ===== Cards (for the three enhancements) ===== */
+/* ===== Cards ===== */
 .cards {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -147,7 +143,7 @@ section {
   border-radius: 999px;
 }
 
-/* ===== Tables (e.g., before/after changes) ===== */
+/* ===== Tables ===== */
 table {
   width: 100%;
   border-collapse: collapse;
@@ -170,7 +166,7 @@ code {
   border-radius: 4px;
 }
 
-/* ===== Video (16:9, responsive) ===== */
+/* ===== Video ===== */
 .video {
   position: relative;
   aspect-ratio: 16 / 9;
