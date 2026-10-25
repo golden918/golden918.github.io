@@ -51,39 +51,44 @@
 
       <h3>Introduction</h3>
 
-      <p>text </p>
+      <p>Finishing my Computer Science degree at Southern New Hampshire University and putting together this ePortfolio has changed how I approach programming. When I first started, I was mostly focused on getting my code to work. Now, I think more about how easy it is to test, maintain, and secure, along with how reliable it will be for the people using it. My capstone helped me see how important these things are in real projects. I improved three different projects by adding automated tests, making algorithms more efficient, and fixing security issues. My goal is to become a game developer, and the skills I have learned throughout this program give me a good foundation to work toward that goal.  </p>
 
-      <h3>Communicating with Stakeholders</h3>
+      <h3>Collaborating in a Team Environment </h3>
 
-      <p>text </p>
+      <p>A lot of my experience with collaboration came from reviewing other students' work and getting feedback on my own. In CS 319: UX/App Design, I reviewed products like Steam, the Starbucks app, and Aseprite. These assignments taught me how to explain what works, point out problems, and suggest improvements. They also helped me get more comfortable receiving feedback and using it to improve my work. I used Git and GitHub throughout the program to manage my projects, and during my capstone, I took a similar approach to reviewing code. I tested problems before trying to fix them and checked that my changes actually worked. I also made design choices that would make my projects easier for other developers to work with. For example, separating the thermostat's logic from its hardware allows someone to test and work on the code without needing a Raspberry Pi.  </p>
+
+      <h3>Communicating with Stakeholders </h3>
+
+      <p>Throughout the program, I learned that how I explain something depends on who I am explaining it to. In CS 465: Full Stack Development, I created a software design document with diagrams and API information to explain how the Travlr Getaways application worked. In CS 319, I created user personas, prototypes, and wireframes for projects like the NutriScan app and a Kiva flip-phone application. This helped me think more about what users actually need instead of focusing only on the code. In CS 370: Current and Emerging Trends in Computer Science, I also wrote a white paper about neural networks and GDPR compliance for readers without a strong technical background. For my capstone, I created a code review video that explained my findings and changes in a way that other developers and managers could follow. I used the same idea when putting together this ePortfolio, making sure employers can understand what I worked on and what I learned from it.  </p>
 
       <h3>Data Structures and Algorithms</h3>
 
-      <p>text </p>
+      <p>One of the biggest things I learned about data structures and algorithms is that choosing the right approach can make a big difference in how a program performs. In CS 410: Software Reverse Engineering, I worked with C++ and assembly, which helped me better understand what happens when code is actually executed. In CS 370, I worked with machine learning by training a Q-learning agent to solve a maze and analyzing a deep Q-learning model using CartPole. For my capstone, I went back to the TreasureHuntGame project and improved how it stored and sampled past experiences. I replaced the original list-based approach with a SumTree, which made inserting experiences O(1) and sampling O(log n). This also allowed the agent to focus more on experiences that were important for learning. These concepts are useful for game development because games often need efficient algorithms for AI, pathfinding, and other tasks that happen while the game is running. </p>
 
-      <h3>Software Engineering and Databases</h3>
+      <h3>Software Engineering and Databases </h3>
 
-      <p>text </p>
+      <p>My understanding of software engineering has grown from simply writing code to thinking about how a project should be organized and how it can be improved later. In CS 350: Emerging Systems Architectures and Technologies, I built a thermostat using a Raspberry Pi that worked with different hardware components. During my capstone, I improved the design by separating the thermostat's state machine from the hardware and using dependency injection. This made it possible to test the main logic without needing the physical device. I also gained experience working with databases in CS 465, where I built a MEAN stack travel application using MongoDB and Mongoose. For my capstone, I improved the database structure, added validation and indexes, introduced filtering and pagination, and created a migration script to update existing data. I also added reporting functionality through an aggregation pipeline. This experience taught me that changing a database involves more than updating the code because existing data and users still need to be supported. </p>
 
-      <h3>Security</h3>
+      <h3>Security </h3>
 
-      <p>text </p>
+      <p>Security became a bigger part of how I approach programming as I progressed through the degree. In CS 405: Secure Coding, I worked on fixing integer overflow and underflow problems in C++, which taught me to think about what could happen when a program receives unexpected input. CS 410 also helped me understand how much information can be exposed by looking at compiled code. In CS 370, I explored some of the privacy and ethical concerns involved in working with machine learning and user data. I applied these lessons during my capstone by improving authentication and database security in Travlr Getaways. I fixed problems with JWT verification, restricted the signing algorithm, improved password hashing, added protection against NoSQL injection, and limited which fields could be changed through requests. I also wrote tests to make sure forged, expired, and invalid tokens were rejected and that rejected requests did not change the database. This helped me understand why security needs to be considered throughout development rather than added at the end.  </p>
 
-      <h3>Professional Goals and Values</h3>
+      <h3>Professional Goals and Values </h3>
 
-      <p>text </p>
+      <p>There are three main things I will take with me from this program. The first is to understand the code before making changes. When I reviewed my capstone projects, I sometimes found that the code worked differently than I expected, so taking the time to understand it first helped me make better decisions. The second is to test my work instead of just assuming it works. Writing automated tests helped me find problems and verify that my changes did what they were supposed to do. The third is to think about the people who already use a system and make sure improvements do not break existing functionality or data. 
 
+Outside of school, I work on game development projects using Godot 4, which is the area I am most interested in pursuing professionally. The skills I gained from my coursework and capstone projects apply to that goal, especially when it comes to organizing code, working with game logic, and making systems more reliable. I want to continue improving as a developer and build software that is not only functional but also well designed, tested, and secure.  </p>
       <h3>Portfolio Overview</h3>
 
-      <p>text </p>
+      <p>The three artifacts in my ePortfolio come from different computer science courses and show the range of skills I have developed throughout the degree. They cover software design, algorithms and data structures, and databases.  </p>
 
       <ul>
-        <li><strong>Enhancement One: Software Design and Engineering.</strong> The CS 350 smart thermostat was refactored to separate its state machine from the Raspberry Pi hardware using an abstract interface, dependency injection, defensive error handling, and a 15-test suite that runs without hardware.</li>
-        <li><strong>Enhancement Two: Algorithms and Data Structures.</strong> The CS 370 TreasureHuntGame Q-learning agent received a SumTree-based Prioritized Experience Replay memory with O(1) insertion and O(log n) sampling, verified by 12 unit tests.</li>
-        <li><strong>Enhancement Three: Databases.</strong> The CS 465 Travlr Getaways MEAN stack application received a redesigned MongoDB schema, indexing, filtering and pagination, an aggregation pipeline, a data migration, hardened authentication, and 54 integration tests.</li>
+        <li><strong>Enhancement One: Software Design and Engineering.</strong> This project started as the smart thermostat I built in CS 350. I improved its design by separating the state machine from the Raspberry Pi hardware, adding better error handling, and creating 15 automated tests that can run without the physical hardware.</li>
+        <li><strong>Enhancement Two: Algorithms and Data Structures.</strong> This project started as the TreasureHuntGame Q-learning agent from CS 370. I improved its experience replay system by using a SumTree to make storing and sampling experiences more efficient. I also added 12 unit tests to check that the new implementation worked correctly.</li>
+        <li><strong>Enhancement Three: Databases.</strong> This project came from CS 465 and is a MEAN stack travel booking application called Travlr Getaways. I improved the MongoDB schema, added indexes and filtering, implemented pagination and reporting, created a data migration, strengthened authentication, and added 54 integration tests.</li>
       </ul>
 
-      <p>Each artifact page includes the original code, the enhanced code, and a narrative explaining what I changed and what I learned. The informal code review video walks through all three artifacts before enhancement. Together, they show a developer who can design clean systems, choose the right algorithms, manage data responsibly, and build security in from the start.</p>
+      <p>Each artifact includes the original code, the improved version, and an explanation of the changes I made and what I learned from the process. My code review video also walks through the projects and the problems I identified before making improvements. Together, these projects show how I have grown throughout the Computer Science program and how I can apply what I learned to different areas of software development. They also give me a foundation to keep building my skills as I work toward a career in game development. </p>
     </section>
   </main>
 
