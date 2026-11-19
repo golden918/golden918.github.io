@@ -4,11 +4,13 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Home | Caleb Baker ePortfolio</title>
-  <link rel="stylesheet" href="style.css">
+  <script>(function(){var t;try{t=localStorage.getItem("theme")}catch(e){}document.documentElement.dataset.theme=t||(matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light")})();</script>
+  <link rel="stylesheet" href="style.css?v=2">
+  <script src="theme.js?v=2" defer></script>
 </head>
 <body>
   <header>
-    <h1>Caleb Baker</h1>
+    <a class="brand" href="index.html">Caleb Baker</a>
     <nav>
       <a href="index.html" class="active">Home</a>
       <a href="enhancement-one.html">Software Design</a>
@@ -16,6 +18,10 @@
       <a href="enhancement-three.html">Databases</a>
       <a href="rocketcrunch.html">Game Jam</a>
     </nav>
+    <button class="theme-toggle" id="theme-toggle" type="button" aria-label="Toggle dark mode">
+      <svg class="icon-moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
+      <svg class="icon-sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4.5"/><path d="M12 1.5v2.5M12 20v2.5M4.6 4.6l1.8 1.8M17.6 17.6l1.8 1.8M1.5 12H4M20 12h2.5M4.6 19.4l1.8-1.8M17.6 6.4l1.8-1.8"/></svg>
+    </button>
   </header>
 
   <main>
@@ -23,7 +29,7 @@
       <h2>Computer Science ePortfolio</h2>
       <p>Software developer focused on game development. I build systems that are tested, maintainable, and secure, from embedded hardware to machine learning to full stack web applications.</p>
       <a class="btn" href="#self-assessment">Read Self-Assessment</a>
-      <a class="btn outline" href="code-review.html">Code Review</a>
+      <a class="btn outline" href="rocketcrunch.html">Play RocketCrunch</a>
     </div>
 
     <h2>Enhanced Artifacts</h2>
